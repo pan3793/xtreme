@@ -1,0 +1,1 @@
+SELECT COUNT( 1 ) FROM meta_project WHERE (id = 'p_001' AND version = 1)

@@ -1,0 +1,107 @@
+buildscript {
+    repositories {
+        maven { url "https://maven.aliyun.com/repository/central" }
+        maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+apply plugin: "kotlin"
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    withSourcesJar()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF8"
+}
+
+compileJava {
+    options.compilerArgs << "-parameters"
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        showStandardStreams = true
+    }
+}
+
+repositories {
+    maven { url "https://maven.aliyun.com/repository/central" }
+}
+
+configurations.all {
+    resolutionStrategy.preferProjectModules()
+
+    exclude group: 'commons-logging', module: 'commons-logging'
+    exclude group: 'log4j', module: 'log4j'
+    exclude group: 'org.apache.logging.log4j', module: 'log4j-core'
+    exclude group: 'org.apache.logging.log4j', module: 'log4j-slf4j-impl'
+    exclude group: 'org.eclipse.jetty', module: 'jetty-runner'
+    exclude group: 'org.slf4j', module: 'slf4j-jdk14'
+    exclude group: 'org.slf4j', module: 'slf4j-jcl'
+    exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+}
+
+dependencies {
+    // log
+    compile "org.slf4j:slf4j-api:$slf4j_version"
+    compile "org.slf4j:jcl-over-slf4j:$slf4j_version"
+
+    // kotlin
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+
+    // ktor
+    compile "io.ktor:ktor-client-cio-jvm:$ktor_version"
+
+    // micrometer
+    compile "io.micrometer:micrometer-core:$micrometer_version"
+
+    // guava
+    compile "com.google.guava:guava:$guava_version"
+
+    // hikari
+    compile "com.zaxxer:HikariCP:$hikari_version"
+
+    // mysql
+    runtime "mysql:mysql-connector-java:$mysql_jdbc_version"
+
+    // jackson
+    compile "com.fasterxml.jackson.core:jackson-core:$jackson_version"
+    compile "com.fasterxml.jackson.core:jackson-databind:$jackson_version"
+    compile "com.fasterxml.jackson.core:jackson-annotations:$jackson_version"
+    compile "com.fasterxml.jackson.datatype:jackson-datatype-joda:$jackson_version"
+    compile "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$jackson_version"
+    compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jackson_version"
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:$jackson_version"
+    compile "com.fasterxml.jackson.module:jackson-module-parameter-names:$jackson_version"
+
+    // spring
+    compile("org.springframework:spring-core:$spring_version") {
+        exclude group: 'org.springframework', module: 'spring-jcl'
+    }
+
+    // test
+    testCompile "org.jetbrains.kotlin:kotlin-test-junit5:$kotlin_version"
+    testCompile "org.junit.jupiter:junit-jupiter-api:$jupiter_version"
+    testCompile "org.junit.jupiter:junit-jupiter-engine:$jupiter_version"
+    testCompile "org.mock-server:mockserver-netty:$mock_server_version"
+    testCompile "org.testcontainers:junit-jupiter:$testcontainers_version"
+    testCompile "org.testcontainers:mockserver:$testcontainers_version"
+    testCompile "org.testcontainers:mysql:$testcontainers_version"
+    testCompile "ch.qos.logback:logback-classic:$logback_version"
+}

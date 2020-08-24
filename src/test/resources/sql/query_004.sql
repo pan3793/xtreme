@@ -1,0 +1,1 @@
+SELECT id,`merge_id`,`source_relation_id`,`target_relation_id`,`source_field`,`target_field`,creator,updater,create_time,update_time FROM meta_field_mapping WHERE (merge_id = 2 AND source_relation_id IN (11,12,100,10))

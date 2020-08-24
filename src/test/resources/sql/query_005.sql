@@ -1,0 +1,1 @@
+SELECT id,`merge_id`,`left_relation_id`,`right_relation_id`,`priority`,`type`,`logical_op`,`join_type`,`op`,`left_expr`,`right_expr`,`full_expr`,creator,updater,create_time,update_time FROM meta_conjunction WHERE (merge_id = 2)

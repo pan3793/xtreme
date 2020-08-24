@@ -1,0 +1,1 @@
+SELECT id,`project_id`,`project_version`,`status`,creator,updater,create_time,update_time FROM meta_merge WHERE id=2
