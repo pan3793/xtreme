@@ -28,7 +28,7 @@ abstract class CioHttpBenchmark<Record, Result> : BaseBenchmark<Record, Result>(
                     maxConnectionsPerRoute = concurrency
                     connectTimeout = timeout.toMillis()
                     keepAliveTime = timeout.toMillis()
-                    pipelining = true
+                    pipelining = false
                     pipelineMaxSize = 1
                     threadsCount = 1
                 }
