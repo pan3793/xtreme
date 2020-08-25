@@ -12,3 +12,8 @@ See detail in Unit Test.
 
 - Java 1.8
 - Docker
+
+## Troubleshooting
+
+1. Seems most Http Mock Components doesn't support HTTP pipelining, so disabled in default, and then every HTTP request 
+will create and close a TCP connection, it may cause `java.net.BindException: Address already in use: no further information`.
