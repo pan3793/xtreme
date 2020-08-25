@@ -13,7 +13,7 @@
 
     <logger name="main" level="INFO"/>
     <logger name="pc.xtreme" level="INFO"/>
-    <logger name="org.mockserver.log" level="WARN"/>
+    <logger name="okhttp3.mockwebserver" level="WARN"/>
     <root level="INFO">
         <appender-ref ref="console"/>
     </root>

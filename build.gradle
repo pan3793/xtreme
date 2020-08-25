@@ -60,6 +60,7 @@ dependencies {
     // log
     compile "org.slf4j:slf4j-api:$slf4j_version"
     compile "org.slf4j:jcl-over-slf4j:$slf4j_version"
+    compile "org.slf4j:jul-to-slf4j:$slf4j_version"
 
     // kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
@@ -96,12 +97,11 @@ dependencies {
     }
 
     // test
+    testCompile "ch.qos.logback:logback-classic:$logback_version"
+    testCompile "com.squareup.okhttp3:mockwebserver:$okhttp3_version"
     testCompile "org.jetbrains.kotlin:kotlin-test-junit5:$kotlin_version"
     testCompile "org.junit.jupiter:junit-jupiter-api:$jupiter_version"
     testCompile "org.junit.jupiter:junit-jupiter-engine:$jupiter_version"
-    testCompile "org.mock-server:mockserver-netty:$mock_server_version"
     testCompile "org.testcontainers:junit-jupiter:$testcontainers_version"
-    testCompile "org.testcontainers:mockserver:$testcontainers_version"
     testCompile "org.testcontainers:mysql:$testcontainers_version"
-    testCompile "ch.qos.logback:logback-classic:$logback_version"
 }

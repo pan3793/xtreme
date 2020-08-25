@@ -7,6 +7,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.produce
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.slf4j.bridge.SLF4JBridgeHandler
 import pc.xtreme.util.IoUtil
 import java.net.InetAddress
 import java.time.Duration
@@ -14,6 +15,9 @@ import java.time.Duration
 @ExperimentalCoroutinesApi
 abstract class BaseBenchmark<Record, Result> {
     init {
+        SLF4JBridgeHandler.removeHandlersForRootLogger()
+        SLF4JBridgeHandler.install()
+
         val metricLogger: Logger = LoggerFactory.getLogger("metrics")
         val loggingMeterRegistry = LoggingMeterRegistry
                 .builder { key ->
